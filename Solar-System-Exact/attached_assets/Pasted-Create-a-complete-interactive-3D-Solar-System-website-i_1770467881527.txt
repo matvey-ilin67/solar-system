@@ -1,0 +1,126 @@
+Create a complete interactive 3D Solar System website in English only. All text, UI labels, descriptions, buttons, tooltips, and data panels must be in English. Do not use any other language.
+
+Goal
+Build a realistic, scientific, NASA-grade visualization similar to NASA Eyes Solar System, but rebuilt from scratch. Focus on physical accuracy, realistic rendering, and educational information.
+
+Technology
+Use Three.js or Babylon.js with WebGL.
+Use Node.js + Express server so the site runs at http://localhost:3000
+ locally and also works in Replit or any hosting.
+Serve files from a public folder.
+
+Scene requirements
+
+Space
+• Deep black background with high-resolution star field
+• Realistic lighting from the Sun only
+• Physically correct shadows
+
+Sun
+• Emissive glow
+• Surface texture
+• Light source for the whole system
+
+Planets and moons
+• High-resolution NASA textures
+• Correct relative sizes
+• Correct distances scaled proportionally
+• Real axial tilt
+• Real rotation speed
+• Real orbital periods
+• Moons orbit their planets correctly
+
+Asteroids and small bodies
+• Thousands of small objects for the asteroid belt
+• Randomized shapes and sizes
+• Realistic rocky materials
+• Kuiper belt objects
+• Several famous objects included such as Ceres, Vesta, Halley, etc.
+
+Orbits
+• True elliptical orbits, not circles
+• Thin glowing orbit lines
+• Accurate inclination angles
+
+Camera
+• Smooth pan, zoom, rotate
+• Focus on object
+• Follow selected body
+
+Interface requirements (English only)
+
+Left panel
+• Object list with checkboxes
+• Toggle categories: Sun, Planets, Moons, Dwarf planets, Asteroids, Comets
+• Time speed controls: x1, x10, x100, x1000
+• Pause and Play
+
+Bottom panel
+• Current date and time in UTC
+• Simulation status
+
+Object information panel
+When user clicks any object, open a side panel with:
+
+• Name
+• Type
+• Radius
+• Mass
+• Gravity
+• Orbital period
+• Rotation period
+• Temperature range
+• Atmosphere
+• Interesting scientific facts
+• Long educational description in clear English
+
+Descriptions must be detailed, not one sentence. At least 5 to 10 lines of text per object.
+
+Magnetic field visualization feature (very important)
+
+Add a button inside each planet’s information panel labeled:
+
+"Show Magnetic Field"
+
+Behavior must be exactly this:
+
+• When pressed, display a visible 3D magnetic field around the planet
+• Use curved field lines emerging from the north pole and entering the south pole
+• Lines must form a dipole field shape
+• Field rotates together with the planet
+• Semi-transparent glowing lines or particles
+• Scaled to realistic magnetosphere size
+• Should look similar to NASA scientific visualizations
+
+Also add:
+
+• Toggle ON and OFF
+• Only visible for planets that actually have magnetic fields (Earth, Jupiter, Saturn, etc.)
+• Disabled or hidden for planets without one
+
+Implementation guidance
+Use either:
+
+• animated line geometry
+or
+• particle flow along vector field
+or
+• shader-based field visualization
+
+The field must be 3D and dynamic, not a static image.
+
+Performance
+• Smooth at 60 FPS
+• Instanced rendering for asteroids
+• Optimized textures
+
+General rules
+• Realistic style only
+• No cartoon look
+• Clean scientific interface
+• Professional NASA-like design
+• Fully interactive
+• Responsive full screen
+• Runs locally and in browser
+
+Generate complete project with all files and working code.

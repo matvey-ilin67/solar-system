@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solar System Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="canvas-container"></div>
+
+<!-- LEFT PANEL -->
+<div id="left-panel">
+  <div class="panel-header">
+    <div class="sun-icon"></div>
+    <div>
+      <div class="panel-title">Solar System Explorer</div>
+      <div class="panel-subtitle">Keplerian Dynamics Model</div>
+    </div>
+  </div>
+  <div class="panel-scroll">
+    <div class="section-label">TIME CONTROLS</div>
+    <div class="time-controls">
+      <div class="date-input-row">
+        <input type="date" class="date-input" id="dateInput">
+        <button class="cal-btn" id="calBtn" title="Set date">&#8634;</button>
+      </div>
+      <div class="speed-row">
+        <button class="speed-btn" data-speed="0" id="pauseBtn" title="Pause">&#9646;&#9646;</button>
+        <button class="speed-btn active" data-speed="1">x1</button>
+        <button class="speed-btn" data-speed="10">x10</button>
+        <button class="speed-btn" data-speed="100">x100</button>
+        <button class="speed-btn" data-speed="1000">x1000</button>
+      </div>
+      <div class="speed-label">1 day/s</div>
+    </div>
+    <div class="separator"></div>
+
+    <!-- Sun -->
+    <div class="category-item" data-cat="star">
+      <div class="cat-expand">&#9654;</div>
+      <div class="cat-check checked" data-toggle="star">&#10003;</div>
+      <div class="cat-icon" style="color:#ffcc33;">&#9788;</div>
+      <div class="cat-name">Sun</div>
+      <div class="cat-count">1</div>
+    </div>
+    <div class="planet-list" id="starList">
+      <div class="planet-item" data-planet="sun"><div class="planet-dot" style="background:#ffdd44;"></div><span class="planet-name">Sun</span></div>
+    </div>
+
+    <!-- Planets -->
+    <div class="category-item" data-cat="planets">
+      <div class="cat-expand open">&#9654;</div>
+      <div class="cat-check checked" data-toggle="planets">&#10003;</div>
+      <div class="cat-icon" style="color:#4a90d9;">&#9679;</div>
+      <div class="cat-name">Planets</div>
+      <div class="cat-count">8</div>
+    </div>
+    <div class="planet-list open" id="planetList">
+      <div class="planet-item" data-planet="mercury"><div class="planet-dot" style="background:#b5b5b5;"></div><span class="planet-name">Mercury</span></div>
+      <div class="planet-item" data-planet="venus"><div class="planet-dot" style="background:#e8cda0;"></div><span class="planet-name">Venus</span></div>
+      <div class="planet-item" data-planet="earth"><div class="planet-dot" style="background:#4a90d9;"></div><span class="planet-name">Earth</span></div>
+      <div class="planet-item" data-planet="mars"><div class="planet-dot" style="background:#c1440e;"></div><span class="planet-name">Mars</span></div>
+      <div class="planet-item" data-planet="jupiter"><div class="planet-dot" style="background:#c99039;"></div><span class="planet-name">Jupiter</span></div>
+      <div class="planet-item" data-planet="saturn"><div class="planet-dot" style="background:#e8d191;"></div><span class="planet-name">Saturn</span></div>
+      <div class="planet-item" data-planet="uranus"><div class="planet-dot" style="background:#7ec8e3;"></div><span class="planet-name">Uranus</span></div>
+      <div class="planet-item" data-planet="neptune"><div class="planet-dot" style="background:#3b5dc9;"></div><span class="planet-name">Neptune</span></div>
+    </div>
+
+    <!-- Moons -->
+    <div class="category-item" data-cat="moons">
+      <div class="cat-expand">&#9654;</div>
+      <div class="cat-check checked" data-toggle="moons">&#10003;</div>
+      <div class="cat-icon" style="color:#aabbcc;">&#9790;</div>
+      <div class="cat-name">Moons</div>
+      <div class="cat-count">8</div>
+    </div>
+    <div class="planet-list" id="moonList">
+      <div class="planet-item" data-planet="moon"><div class="planet-dot" style="background:#c8c8c8;"></div><span class="planet-name">Moon (Earth)</span></div>
+      <div class="planet-item" data-planet="phobos"><div class="planet-dot" style="background:#8a7766;"></div><span class="planet-name">Phobos (Mars)</span></div>
+      <div class="planet-item" data-planet="io"><div class="planet-dot" style="background:#ddcc44;"></div><span class="planet-name">Io (Jupiter)</span></div>
+      <div class="planet-item" data-planet="europa"><div class="planet-dot" style="background:#c8bda0;"></div><span class="planet-name">Europa (Jupiter)</span></div>
+      <div class="planet-item" data-planet="ganymede"><div class="planet-dot" style="background:#998877;"></div><span class="planet-name">Ganymede (Jupiter)</span></div>
+      <div class="planet-item" data-planet="titan"><div class="planet-dot" style="background:#cc9955;"></div><span class="planet-name">Titan (Saturn)</span></div>
+      <div class="planet-item" data-planet="triton"><div class="planet-dot" style="background:#88aacc;"></div><span class="planet-name">Triton (Neptune)</span></div>
+      <div class="planet-item" data-planet="charon"><div class="planet-dot" style="background:#999;"></div><span class="planet-name">Charon (Pluto)</span></div>
+    </div>
+
+    <!-- Dwarf Planets -->
+    <div class="category-item" data-cat="dwarfs">
+      <div class="cat-expand">&#9654;</div>
+      <div class="cat-check checked" data-toggle="dwarfs">&#10003;</div>
+      <div class="cat-icon" style="color:#9988aa;">&#9675;</div>
+      <div class="cat-name">Dwarf Planets</div>
+      <div class="cat-count">5</div>
+    </div>
+    <div class="planet-list" id="dwarfList">
+      <div class="planet-item" data-planet="ceres"><div class="planet-dot" style="background:#8a8a8a;"></div><span class="planet-name">Ceres</span></div>
+      <div class="planet-item" data-planet="pluto"><div class="planet-dot" style="background:#c9b9a0;"></div><span class="planet-name">Pluto</span></div>
+      <div class="planet-item" data-planet="eris"><div class="planet-dot" style="background:#d0d0d0;"></div><span class="planet-name">Eris</span></div>
+      <div class="planet-item" data-planet="haumea"><div class="planet-dot" style="background:#bbbbbb;"></div><span class="planet-name">Haumea</span></div>
+      <div class="planet-item" data-planet="makemake"><div class="planet-dot" style="background:#cc9977;"></div><span class="planet-name">Makemake</span></div>
+    </div>
+
+    <!-- Asteroids -->
+    <div class="category-item" data-cat="asteroids">
+      <div class="cat-expand">&#9654;</div>
+      <div class="cat-check checked" data-toggle="asteroids">&#10003;</div>
+      <div class="cat-icon" style="color:#6a7888;">&#9633;</div>
+      <div class="cat-name">Asteroids</div>
+      <div class="cat-count">2</div>
+    </div>
+    <div class="planet-list" id="asteroidList">
+      <div class="planet-item" data-planet="vesta"><div class="planet-dot" style="background:#aaa;"></div><span class="planet-name">Vesta</span></div>
+      <div class="planet-item" data-planet="pallas"><div class="planet-dot" style="background:#888;"></div><span class="planet-name">Pallas</span></div>
+    </div>
+
+    <!-- Comets -->
+    <div class="category-item" data-cat="comets">
+      <div class="cat-expand">&#9654;</div>
+      <div class="cat-check checked" data-toggle="comets">&#10003;</div>
+      <div class="cat-icon" style="color:#6a88aa;">&#9675;</div>
+      <div class="cat-name">Comets</div>
+      <div class="cat-count">1</div>
+    </div>
+    <div class="planet-list" id="cometList">
+      <div class="planet-item" data-planet="halley"><div class="planet-dot" style="background:#88bbdd;"></div><span class="planet-name">Halley's Comet</span></div>
+    </div>
+
+    <!-- Belts -->
+    <div class="belt-item" data-cat="belt">
+      <div class="cat-check checked" data-toggle="belt">&#10003;</div>
+      <div class="belt-icon">&#10023;</div>
+      <div class="cat-name">Asteroid Belt</div>
+    </div>
+    <div class="belt-item" data-cat="kuiper">
+      <div class="cat-check checked" data-toggle="kuiper">&#10003;</div>
+      <div class="belt-icon">&#10023;</div>
+      <div class="cat-name">Kuiper Belt</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM BAR -->
+<div id="bottom-bar">
+  <div style="display:flex;align-items:center;gap:6px;">
+    <div class="status-dot" id="statusDot"></div>
+    <span class="status-text" id="statusText">RUNNING</span>
+  </div>
+  <span class="datetime-text" id="simDateTime">2026-02-07 00:00:00.000 UTC</span>
+  <span class="jd-text" id="simJD">JD 2461079.50000</span>
+</div>
+
+<!-- INFO PANEL -->
+<div id="info-panel" class="">
+  <button class="info-close" id="infoClose">&times;</button>
+  <div class="info-header-section">
+    <div class="info-title" id="infoTitle">Earth</div>
+    <div class="info-type" id="infoType">Planet</div>
+  </div>
+  <div class="info-section">
+    <div class="info-section-title">Physical Properties</div>
+    <div class="info-row"><span class="info-label">Radius</span><span class="info-value" id="infoRadius">6,371 km</span></div>
+    <div class="info-row"><span class="info-label">Mass</span><span class="info-value" id="infoMass">-</span></div>
+    <div class="info-row"><span class="info-label">Surface Gravity</span><span class="info-value" id="infoGravity">-</span></div>
+    <div class="info-row"><span class="info-label">Temperature</span><span class="info-value" id="infoTemp">-</span></div>
+    <div class="info-row"><span class="info-label">Atmosphere</span><span class="info-value" id="infoAtmo">-</span></div>
+  </div>
+  <div class="info-section">
+    <div class="info-section-title">Orbital Parameters</div>
+    <div class="info-row"><span class="info-label">Distance from Sun</span><span class="info-value" id="infoDist">1.000 AU</span></div>
+    <div class="info-row"><span class="info-label">Orbital Period</span><span class="info-value" id="infoPeriod">365.25 days</span></div>
+    <div class="info-row"><span class="info-label">Rotation Period</span><span class="info-value" id="infoRotation">-</span></div>
+    <div class="info-row"><span class="info-label">Eccentricity</span><span class="info-value" id="infoEcc">0.0167</span></div>
+    <div class="info-row"><span class="info-label">Inclination</span><span class="info-value" id="infoInc">0.00&deg;</span></div>
+    <div class="info-row"><span class="info-label">Axial Tilt</span><span class="info-value" id="infoAxialTilt">-</span></div>
+    <div class="info-row"><span class="info-label">Semi-major Axis</span><span class="info-value" id="infoSMA">1.000 AU</span></div>
+  </div>
+  <div class="info-section" id="infoFactsSection">
+    <div class="info-section-title">Scientific Facts</div>
+    <div class="info-facts" id="infoFacts"></div>
+  </div>
+  <div class="info-section" id="infoDescSection">
+    <div class="info-section-title">Description</div>
+    <div class="info-description" id="infoDesc"></div>
+  </div>
+  <div class="info-buttons">
+    <button class="info-action-btn" id="infoFollow">Follow Object</button>
+    <button class="info-action-btn mag-btn" id="infoMagField" style="display:none;">Show Magnetic Field</button>
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
